@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morkborg Mobile Character Generator</title>
+    <meta name="description" content="A Morkborg character generator in progress. Currently has classless character and fangless deserter implemented.">
+    <script type="text/javascript" src="additional-code/purify.min.js"></script>
+    <script src="script.js" defer></script>
+    <script src="standard_module/standard_module.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <div id="morkborg_app">
+            <picture id="back_img_layout"><img src="images/back_layout_mobile.png"><div id="back_color"></div></picture>
+            <section id="header"><h2>Morkborg</h2></section>
+            <picture id="front_img_layout">
+                <img src="images/morkborg-front-layout-mobile.png">
+                <img src="images/hitpoints.svg">
+                <img src="images/omens.svg">
+                <img src="images/strength.svg">
+                <img src="images/agility.svg">
+                <img src="images/presence.svg">
+                <img src="images/toughness.svg">
+                <p class="attribute">5</p>
+                <p class="attribute">1</p>
+                <p class="attribute">0</p>
+                <p class="attribute">0</p>
+                <p class="attribute">0</p>
+                <p class="attribute">0</p>
+            </picture>
+            <div id="silver_food">
+                <picture>
+                    <img src="images/silver-food.png">
+                    <img src="images/silver.svg">
+                    <img src="images/food.svg">
+                    <p class="attribute">20</p>
+                    <p class="attribute">4</p>
+                </picture>
+            </div>
+            <div id="horizontal-container" class="snap-inline">
+                <section id="carry_capacity">
+                    <div>
+                        <p>
+                        <span>Carry Capacity</span>
+                        8
+                        </p>
+                    </div>
+                </section>
+                <section id="equipment">
+                    <h3>Equipment</h3>
+                    <div>
+                        <p><span>#.</span> Items</p>
+                    </div>
+                </section>
+                <section id="weapon">
+                    <h3>Weapons</h3>
+                </section>
+                <section id="armor">
+                    <h3>Armor</h3>
+                </section>
+            </div>
+            <div id="footer_bar">
+                <div id="blackbar"></div>
+                <div id="class">
+                    <div>
+                        <span>Class</span><span>N/A</span>
+                    </div>
+                </div>
+                <div id="footer_content">
+                    <img src="images/mobile-button.png">
+                    <button onclick="selectRandomClass()">
+                        Generate
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

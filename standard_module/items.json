@@ -1,0 +1,46 @@
+{
+    "starting_equipment":[
+        ["", "", {"name": "Backpack", "desc":" for 7 normal-sized items."}, {"name": "Sack", "desc":" for 10 normal-sized items"}, {"name": "Small Wagon", "desc":""}, {"name": "Donkey", "desc":", not bad."}],
+        [{"name": "Rope", "desc":" 30 feet"},{"name": "Torches", "desc":""},{"name": "Lantern", "desc":" with oil; for"},{"name": "Magnesium strip", "desc":""},{"name": "Random Unclean Scroll", "desc":""},{"name": "Sharp needle", "desc":""},
+        {"name": "Medicine Chest", "desc":" <br>(Stops bleeding/infection and heals d6 HP)"},{"name": "Metal File and Lockpicks", "desc":""},{"name": "Bear Trap", "desc":" <br>(Presence DR14 to spot, d8 damage)"},{"name": "Bomb", "desc":" (sealed bottle, d10 damage)"},{"name": "Bottle of Red Poison", "desc":" <br>(Toughness DR12 or d10 damage)"},{"name": "Silver Crucifix", "desc":""}],
+        [{"name":"Life Elixir:", "desc":" (heals d6 HP and removes infection)"}, {"name":"Sacred Scroll", "desc":""}, {"name":"Small Vicious Dog", "desc":" <br>(Bite d4, only obeys you.)"}, {"name":"Monkeys", "desc":" that ignore but love you. <br>(punch/bite d4)"}, {"name":"Exquisite Perfume:", "desc":" worth 25s"}, {"name":"Toolbox", "desc":" <br>10 nails, tongs, hammer, small saw and drill."},
+        {"name":"Heavy Chain:", "desc":" 15 feet"},{"name":"Grappling Hook", "desc":""},{"name":"Shield", "desc":" <br>(-1 HP damage or have the shield break to ignore one attack.)"},{"name":"Crowbar", "desc":" (d4 damage)"},{"name":"Lard", "desc":" (may function as 5 meals in a pinch)"},{"name":"Tent", "desc":""}]
+    ],
+    "weapons": [
+        {"name":"Femur", "damage":"d4"},{"name":"Staff", "damage":"d4"},{"name":"Shortsword", "damage":"d4"},
+        {"name":"Knife", "damage":"d4"},{"name":"Warhammer", "damage":"d6"},{"name":"Sword", "damage":"d6"},
+        {"name":"Bow", "damage":"d6", "ammo":"arrows", "amount":10, "modifier":"Presence"},{"name":"Flail", "damage":"d8"},
+        {"name":"Crossbow", "damage":"d8", "ammo":"bolts", "amount":10, "modifier":"Presence"},{"name":"Zweihänder", "damage":"d10"}
+    ],
+    "armor":[
+        {"name":"No Armor", "damage_reduction":"", "cost":0, "tier":0, "effect":""},
+        {"name":"Light", "damage_reduction":"-d2", "cost":20, "tier":1, "effect":""},
+        {"name":"Medium", "damage_reduction":"-d4", "cost":100, "tier":2, "effect":"DR+2 on Agility tests including defence"},
+        {"name":"Heavy", "damage_reduction":"-d6", "cost":200, "tier":3, "effect":"DR+4 on Agility tests, defence is DR+2"}
+    ],
+    "scrolls": {
+        "unclean":[{"name":"Palms open the southern Gate", "desc":" A ball of fire hits d2 creatures dealing d8 damage per creature."},
+            {"name":"Tongue of Eris", "desc":" A creature of your choice is confused for 10 minutes."},{"name":"Te-Le-Kin-Esis", "desc":" Move an object up to D10x10 feet for d6 minutes."},
+            {"name":"Lucy-fires Levitation", "desc":" Hover for"},{"name":"Daemon of Capillaries", "desc":" One creature suffocates for d6 rounds, losing d4 HP per round."},
+            {"name":"Nine Violet Signs Unknot The Storm", "desc":" produce d2 lightning bolts dealing d6 damage each."},{"name":"Metzhuotl Blind your Eye", "desc":" A creature becomes invisible for d6 rounds or until it is damaged, attacking/defending with dr6."},
+            {"name":"Foul Psychompomp", "desc":" Summon (d6): 1-3 d4 skeletons, 4-6 d4 zombies."},{"name":"Eyelid Blinds the Mind", "desc":" d4 creatures fall asleep for one hour unless they succeed a DR14 test."},
+            {"name":"Death", "desc":" all creatures within 30 feet lose a total of 4d10 HP."}],
+        "sacred":[
+            {"name":"Grace of a Dead Saint", "desc":" d2 creatures regain d10 HP each."},{"name":"Grace for a Sinner", "desc":" A creature of your choice gets +d6 on one roll (damage, tests, etc.)"},
+            {"name":"Whispers Pass the Gate", "desc":" Ask three questions to a deceased creature."},{"name":"Aegis of Sorrow", "desc":" A creature of your choice gains 2d6 extra HP for 10 rounds."},
+            {"name":"Unmet Fate", "desc":" One creature, dead for no more than a week, is awakened with terrible memories."},{"name":"Bestial Speech", "desc":" You may speak with animals for d20 minutes."},
+            {"name":"False Dawn/Night's Chariot", "desc":" Light or pitch black for 3d10 minutes."},{"name":"Hermetic Step", "desc":" You find all traps in your path for 2d10 minutes."},
+            {"name":"Roskoe's Consuming Glare", "desc":" d4 creatures lose d8 HP each."},{"name":"Enochian Syntax", "desc":" One creature blindly obeys a single command."}
+        ]
+    },
+    "fanged_deserter": {
+        "starting_items":[
+            {"name":"Crumpled Monster Mask", "desc":" <br>Strikes primitive fear into lesser creatures like goblins, gnoums and children. While worn, they check Morale every round."},
+            {"name":"The Brown Scimitar of Galgenbeck","damage":"d6", "effect":"DR10 attack and defence while you wield it. 1 in 6 chance a wounded enemy is smitten with potent sepsis, dying in 10 minutes."},
+            {"name":"Wizard Teeth","desc":" <br>Weird teeth rattle within a blackened pouch. Before battle roll a d6 for each one. For every 6 one of your attacks deals maximum damage."},
+            {"name":"Old Sigûrd’s sling","damage":"2d4", "ammo":"Rocks"},
+            {"name":"Ancient Gore-Hound","desc":" <br>Attacks with DR10 (bite d6). Defends with DR12, 10 HP. Becomes frenzied around goblins and berserkers. <br><i>Asthmatic, deluded and on its last legs, this wizened creature still has a superb nose and can sniffle up treasure in the most disgusting debris.</i>"},
+            {"name":"The Shoe of Death’s Horse","damage":"d4", "effect":"In your hands it hits with DR10. 1 in 6 chance the shoe smashes the skull, instantly killing small-to-medium sized creatures. The shoe returns to your hand like a boomerang."}
+        ]
+    }
+}
