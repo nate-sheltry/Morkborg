@@ -9,16 +9,42 @@ let item3;
 let isScroll;
 
 const items = []
+const itemsURL = './standard_module/items.json'
+const characterDescriptors = []
+const descriptorURL = './standard_module/character_descriptors.json'
+const names = []
+const namesURL = './standard_module/names.json'
 
-async function getData(){
-    let data = await fetch('./standard_module/items.json').then(result => {return result.json()});
-    items.push(data)
+async function getData(array, url){
+    let data = await fetch(url).then(result => {return result.json()});
+    array.push(data)
 }
 
-getData();
+getData(items, itemsURL);
+getData(names, namesURL);
+getData(characterDescriptors, descriptorURL);
 
 function calcCarryCap(){
     return mainAttributes.Strength+8
+}
+function getName(){
+    return names[0][rollDie(names[0].length)-1][rollDie(names[0].length)-1]
+}
+function getDescriptor(object){
+    let descriptor = object;
+    return descriptor[rollDie(descriptor.length) -1];
+}
+function getCharacterInfo(){
+    let name = getName()
+    let trait1 = getDescriptor(characterDescriptors[0].terrible_traits)
+    let trait2;
+    do{
+        trait2 = getDescriptor(characterDescriptors[0].terrible_traits)
+    } while(trait2 == trait1);
+    let broken = getDescriptor(characterDescriptors[0].broken_bodies)
+    let habit = getDescriptor(characterDescriptors[0].bad_habits)
+    let tale = getDescriptor(characterDescriptors[0].troubling_tales)
+    return [[name], [trait1, trait2], [broken], [habit], [tale]]
 }
 
 function getStartItem(roll, itemList){
@@ -103,7 +129,7 @@ function getStartingEquipment(scrollsAllowed){
         if(hasScroll(item3)){
             item3 = getStartItem(rollDie(12)-1, 2)
         }
-        if(hasScroll(item3)){item3 = undefined, undefined}
+        if(hasScroll(item3)){item3 = [undefined, undefined]}
     }
     startingItems = [item1, item2, item3]
     return startingItems;
@@ -128,17 +154,17 @@ function decideScroll(item){
     return [`1.`, `${scroll.name}:${scroll.desc}`];
 }
 
-function getArmor(){
+function getArmor(otherFactor = false){
     let scroll = isScroll;
-    if(scroll)
+    if(scroll || otherFactor)
         return items[0].armor[rollDie(2)-1]
     return [items[0].armor[rollDie(4)-1]]
 }
 
-function getWeapon(){
+function getWeapon(otherFactor = false){
     let weapon;
     let scroll = isScroll;
-    if(scroll){
+    if(scroll || otherFactor){
         weapon = items[0].weapons[rollDie(6)-1]
     }
     else{
@@ -203,7 +229,8 @@ function noClassAttributes(){
     let equipment = getStartingEquipment();
     let weapons = getWeapon();
     let armor = getArmor()
-    displayEquipment(equipment, weapons, armor);
+    let charInfo = getCharacterInfo();
+    displayEquipment(equipment, weapons, armor, charInfo);
 }
 
 function fangedDeserter(){
@@ -211,9 +238,11 @@ function fangedDeserter(){
     for(let i = 0; i < 4; i++){
         attributes.push(rollDice('3d6'))
     }
+    //Strength +2, Agility & Presence -1
     attributes[0] = attributes[0] + 2;
     attributes[1] = attributes[1] - 1;
     attributes[2] = attributes[2] - 1;
+    /********************************/
     mainAttributes.Omens = rollDie(2);
     inventory.silver = rollDice('2d6')*10;
     inventory.food = rollDie(4);
@@ -227,5 +256,35 @@ function fangedDeserter(){
     let weapons = getWeapon();
     let armor = getArmor()
     fangedDeserterItem(equipment, weapons)
-    displayEquipment(equipment, weapons, armor);
+    let charInfo = getCharacterInfo();
+    charInfo.push([characterDescriptors[0].fanged_deserter.name + getDescriptor(characterDescriptors[0].fanged_deserter.values)])
+    displayEquipment(equipment, weapons, armor, charInfo);
+}
+
+function gutterBornScum(){
+    let attributes = [];
+    for(let i = 0; i < 4; i++){
+        attributes.push(rollDice('3d6'))
+    }
+    //Strength -2;
+    attributes[0] = attributes[0] - 2;
+    /********************************/
+    mainAttributes.Omens = rollDie(2);
+    inventory.silver = rollDice('1d6')*10;
+    inventory.food = rollDie(4);
+    determineAttributes(attributes);
+    mainAttributes.HitPoints = mainAttributes.Toughness + rollDie(6);
+    if(mainAttributes.HitPoints < 1)
+        mainAttributes.HitPoints = 1;
+    inventory.carryCapacity = mainAttributes.Strength + 8;
+    displayAttributes();
+    let equipment = getStartingEquipment();
+    let weapons = getWeapon(true);
+    let armor = getArmor(true)
+    /*
+    fangedDeserterItem(equipment, weapons)
+    let charInfo = getCharacterInfo();
+    charInfo.push([characterDescriptors[0].fanged_deserter.name + getDescriptor(characterDescriptors[0].fanged_deserter.values)])
+    */
+    displayEquipment(equipment, weapons, armor, charInfo);
 } 

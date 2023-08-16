@@ -27,6 +27,8 @@ const __weapon = document.querySelector('#weapon');
 const __armor = document.querySelector('#armor');
 const __class = document.querySelector('#class');
 
+const __charInfo = document.querySelector('.character_info');
+
 const __footer = document.querySelector('#footer_bar')
 
 let touchStartY;
@@ -77,7 +79,7 @@ function displayAttributes(){
     __carryCap.children[0].childNodes[2].textContent = inventory.carryCapacity;
 }
 
-function displayEquipment(equipment, weapons, armors){
+function displayEquipment(equipment, weapons, armors, charInfo){
     //Starting Items
     if(__equipment.children.length > 1){
         for(let i = __equipment.children.length-1; i > 0; i--){
@@ -86,7 +88,7 @@ function displayEquipment(equipment, weapons, armors){
     }
     for(let i = 0; i < equipment.length; i++){
         if(equipment[i][0] == undefined && equipment[i][1] == undefined)
-            continue
+            continue;
         let paragraph = document.createElement('p');
         let numbering = document.createElement('span');
         numbering.textContent = equipment[i][0];
@@ -153,6 +155,25 @@ function displayEquipment(equipment, weapons, armors){
         }
         __armor.appendChild(div)
     })
+    //Character Information
+    for(let i = 0; i < __charInfo.children.length; i++){
+        let object = __charInfo.children[i]
+        for(let i = object.childNodes.length-1; i > 0; i--){
+            object.childNodes[i].remove()
+        }
+        if(!charInfo[i]){
+            object.innerHTML += DOMPurify.sanitize("N/A");
+            continue;
+        }
+        charInfo[i].forEach(value => {
+            object.innerHTML += DOMPurify.sanitize(value);
+        })
+        if(object.innerHTML[object.innerHTML.length -2] == ','){
+            let string = object.innerHTML;
+            string = string.slice(0, string.length-2) + '.'
+            object.innerHTML = DOMPurify.sanitize(string);
+        }
+    }
 
 }
 
@@ -208,3 +229,7 @@ function selectRandomClass(){
     }
     __class.children[0].children[1].textContent = className;
 }
+
+__charInfo.parentElement.children[0].addEventListener('pointerdown', (e) => {
+    __charInfo.classList.toggle('display-flex', !__charInfo.classList.contains('display-flex'))
+})
