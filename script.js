@@ -12,11 +12,11 @@ let isFirefox = typeof InstallTrigger !== 'undefined';
 let isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
 if(isFirefox)
-    loadStyleSheet('mozilla_style.css');
+    loadStyleSheet('mozilla_style.css?' + `${Date.now()}`);
 else if(isChrome)
-    loadStyleSheet('style.css');
+    loadStyleSheet('style.css?' + `${Date.now()}`);
 else
-    loadStyleSheet('style.css');
+    loadStyleSheet('style.css?' + `${Date.now()}`);
 
 
 //
