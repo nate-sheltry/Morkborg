@@ -186,6 +186,7 @@ main {
 
 #character_info_container {
     position:relative;
+    background-color:black;
     z-index:1;
     width:calc(80vw - 4px);
     margin:4em 10vw 4em 10vw;
