@@ -186,8 +186,8 @@ main {
 
 #character_info_container {
     position:relative;
-    background-color:black;
     z-index:1;
+    height:48px;
     width:calc(80vw - 4px);
     margin:4em 10vw 4em 10vw;
     border:2px solid white;
@@ -202,11 +202,20 @@ main {
 }
 .character_info {
     display:none;
+    opacity:1;
+    background-color:rgba(0,0,0,.95);
+    width:100%;
+    margin:4px 0px 0px -2px;
+    border:2px solid white;
+    outline: 2px solid grey;
+    position:relative;
     font-size:1.25em;
     flex-direction:column;
+    z-index:1;
 }
 .character_info p {
     height:100%;
+    opacity:1;
     border-bottom:2px solid white;
     line-height:1.25em;
     color:white;
