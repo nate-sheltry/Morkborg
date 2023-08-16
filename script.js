@@ -1,4 +1,23 @@
 
+//Load alternate style file for Mozilla
+function loadStyleSheet(url){
+    let link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = url
+    document.head.appendChild(link)
+}
+let isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
+let isFirefox = typeof InstallTrigger !== 'undefined';
+let isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+if(isFirefox)
+    loadStyleSheet('mozilla_style.css');
+else if(isChrome)
+    loadStyleSheet('style.css');
+else
+    loadStyleSheet('style.css');
+
 
 //
 const __attributes = document.querySelectorAll(".attribute")
