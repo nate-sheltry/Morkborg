@@ -34,13 +34,28 @@
         ]
     },
     "fanged_deserter": {
-        "starting_items":[
+        "starting_bonus":[
             {"name":"Crumpled Monster Mask", "desc":" <br>Strikes primitive fear into lesser creatures like goblins, gnoums and children. While worn, they check Morale every round."},
             {"name":"The Brown Scimitar of Galgenbeck","damage":"d6", "effect":"DR10 attack and defence while you wield it. 1 in 6 chance a wounded enemy is smitten with potent sepsis, dying in 10 minutes."},
             {"name":"Wizard Teeth","desc":" <br>Weird teeth rattle within a blackened pouch. Before battle roll a d6 for each one. For every 6 one of your attacks deals maximum damage."},
             {"name":"Old Sigûrd’s sling","damage":"2d4", "ammo":"Rocks"},
             {"name":"Ancient Gore-Hound","desc":" <br>Attacks with DR10 (bite d6). Defends with DR12, 10 HP. Becomes frenzied around goblins and berserkers. <br><i>Asthmatic, deluded and on its last legs, this wizened creature still has a superb nose and can sniffle up treasure in the most disgusting debris.</i>"},
             {"name":"The Shoe of Death’s Horse","damage":"d4", "effect":"In your hands it hits with DR10. 1 in 6 chance the shoe smashes the skull, instantly killing small-to-medium sized creatures. The shoe returns to your hand like a boomerang."}
+        ]
+    },
+    "gutter_born_scum":{
+        "starting_bonus":[
+            {"name":"Coward’s Jab","desc":"When attacking by surprise test Agility DR10. On a success you automatically hit once with a light one-handed weapon, dealing normal damage +3."},
+            {"name":"Filthy Fingersmith", "desc":"Your snaky little digits get into pockets and pick locks with a DR8 Agility test. You also begin with lockpicks!"},
+            {"name":"Abominable Gob Lobber", "desc":"Your phlegm is viscous, lumpy, vile and ballistically accurate at short range. You can spit d2 times during a fight. Roll a DR8 Presence test for accuracy. Targets are blinded, retching and vomiting for d4 rounds. Anyone witnessing this—friend and foe—must make a Toughness test to not also vomit. PCs test DR10 and enemies DR12."},
+            {"name":"Escaping Fate", "desc":"Every time you use an omen there is a 50% chance it is not spent."},
+            {"name":"Excretal Stealth", "desc":"You have an astounding, almost preternatural ability to hide in muck, debris and filth. When hidden in these conditions a DR16 Presence test is required to notice you."},
+            {"name":"Dodging Death", "desc":"You are so unpleasant, irrelevant, disgusting and vile even Death would rather avoid you if it can. On death, if there is even the slightest possibility that you survived, there is a 50% chance that you did. If successful, after 10 rounds you pop back up with d4 HP and an unlikely explanation of your escape."}
+        ]
+    },
+    "gutter_born_scum":{
+        "":[
+
         ]
     }
 }

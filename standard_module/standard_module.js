@@ -177,7 +177,7 @@ function getWeapon(otherFactor = false){
 
 function fangedDeserterItem(equipment, weapons){
     let index = rollDie(6)-1;
-    let classItem = items[0].fanged_deserter.starting_items[index]
+    let classItem = items[0].fanged_deserter.starting_bonus[index]
     if(classItem.hasOwnProperty('damage')){
         weapons.push(classItem)
         return
