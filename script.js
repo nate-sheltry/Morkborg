@@ -27,12 +27,15 @@ const __weapon = document.querySelector('#weapon');
 const __armor = document.querySelector('#armor');
 const __class = document.querySelector('#class');
 
-const __charInfo = document.querySelector('.character_info');
+const __charInfo = document.querySelector('#character_info_container').children[1];
 
 const __footer = document.querySelector('#footer_bar')
 
 let touchStartY;
 let touchDeltaY;
+let touchTimeStart = null;
+let touchTimeEnd = null;
+
 
 const classes = {}
 
@@ -41,17 +44,33 @@ function isTouchDevice() {
     return 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 }
 function handleTouchStart(event) {
-    touchStartY = event.touches[0].clientY;
-} 
+    if(event.pointerType === 'touch'){
+        touchTimeStart = new Date().getTime();
+        return true;
+        //if(event.touches){touchStartY = event.touches[0].clientY;}
+    }
+    return false;
+}
+/*
 function handleTouchMove(event) {
     touchDeltaY = touchStartY - event.touches[0].clientY;
-}
-function cancelMovement(e){
-    e.preventDefault()
+}*/
+function handleTouchEnd(){
+    if(touchTimeStart != null){
+        const touchEndTimestamp = new Date().getTime();
+        const touchDuration = touchEndTimestamp - touchTimeStart;
+        if(touchDuration < 1000){
+            touchTimeStart = null;
+            return true;
+        }
+        touchTimeStart = null;
+        return false;
+    }
+    return false;
 }
   
-document.addEventListener('touchstart', handleTouchStart);
-document.addEventListener('touchmove', handleTouchMove);
+//document.addEventListener('touchstart', (e) => {handleTouchStart(e)});
+//document.addEventListener('touchmove', (e) => {handleTouchMove(e)});
 
 const __horizontalScrollContainer = document.querySelector('#horizontal-container');
 
@@ -98,12 +117,13 @@ function displayEquipment(equipment, weapons, armors, charInfo){
     }
     //Weapon
     if(__weapon.children.length > 1){
-        for(let i = __weapon.children.length-1; i > 0; i--){
+        for(let i = __weapon.children.length-1; i > 1; i--){
             __weapon.children[i].remove()
         }
     }
     weapons.forEach(weapon =>{
         let div = document.createElement('div')
+        div.classList.toggle('character_info')
         let name = document.createElement('p')
         let paragraph;
         name.textContent = weapon.name;
@@ -142,6 +162,7 @@ function displayEquipment(equipment, weapons, armors, charInfo){
     }
     armors.forEach(armor => {
         let div = document.createElement('div')
+        div.classList.toggle('character_info')
         let name = document.createElement('p')
         name.textContent = armor.name;
         div.appendChild(name);
@@ -229,7 +250,31 @@ function selectRandomClass(){
     }
     __class.children[0].children[1].textContent = className;
 }
+function startOpen(e){
+    if(!handleTouchStart(e))
+        e.target.parentElement.children[1].classList.toggle('display-flex', !e.target.parentElement.children[1].classList.contains('display-flex'))
+}
+function openDiv(e){
+    if(handleTouchEnd()){
+        for(let i = 1; i < e.target.parentElement.children.length; i++){
+            e.target.parentElement.children[i].classList.toggle('display-flex', !e.target.parentElement.children[i].classList.contains('display-flex'))
+        }
+    }
+    if(e.target.parentElement.children[1].classList.contains('display-flex')){
+        e.target.parentElement.style.borderBottomLeftRadius = '0px';
+        e.target.parentElement.style.borderBottomRightRadius = '0px';
+    }
+    else if(!e.target.parentElement.children[1].classList.contains('display-flex')){
+        e.target.parentElement.style.borderBottomLeftRadius = '4px';
+        e.target.parentElement.style.borderBottomRightRadius = '4px';
+    }
+}
 
-__charInfo.parentElement.children[0].addEventListener('pointerdown', (e) => {
-    __charInfo.classList.toggle('display-flex', !__charInfo.classList.contains('display-flex'))
-})
+__charInfo.parentElement.children[0].addEventListener('pointerdown', startOpen);
+__charInfo.parentElement.children[0].addEventListener('pointerup', openDiv);
+__equipment.parentElement.children[0].addEventListener('pointerdown', startOpen);
+__equipment.parentElement.children[0].addEventListener('pointerup', openDiv);
+__weapon.children[0].addEventListener('pointerdown', startOpen);
+__weapon.children[0].addEventListener('pointerup', openDiv);
+__armor.parentElement.children[0].addEventListener('pointerdown', startOpen);
+__armor.parentElement.children[0].addEventListener('pointerup', openDiv);

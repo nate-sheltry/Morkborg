@@ -13,7 +13,7 @@
 <body>
     <main>
         <div id="morkborg_app">
-            <picture id="back_img_layout"><img src="images/back_layout_mobile.webp"><div id="back_color"></div></picture>
+            <picture id="back_img_layout" unselectable="on"><img src="images/back_layout_mobile.webp"><div id="back_color"></div></picture>
             <section id="header"><h2>Morkborg</h2></section>
             <picture id="front_img_layout">
                 <img src="images/morkborg-front-layout-mobile.webp">
@@ -32,7 +32,7 @@
             </picture>
             <div id="silver_food">
                 <picture>
-                    <img src="images/silver-food.webp">
+                    <img src="images/silver-food.webp" unselectable="on">
                     <img src="images/silver.svg">
                     <img src="images/food.svg">
                     <p class="attribute">20</p>
@@ -40,7 +40,7 @@
                 </picture>
             </div>
             <section id="character_info_container">
-                <button>Name, Traits, Tales</button>
+                <button unselectable="on">Name, Traits, Tales</button>
                 <div class="character_info">
                     <p><span>Name</span> </p>
                     <p><span>Traits</span> </p>
@@ -50,7 +50,7 @@
                     <p><span>Class Specific</span> </p>
                 </div>
             </section>
-            <div id="horizontal-container" class="snap-inline">
+            <div id="horizontal-container">
                 <section id="carry_capacity">
                     <div>
                         <p>
@@ -60,16 +60,18 @@
                     </div>
                 </section>
                 <section id="equipment">
-                    <h3>Equipment</h3>
-                    <div>
+                    <button unselectable="on">Equipment</button>
+                    <div class="character_info">
                         <p><span>#.</span> Items</p>
                     </div>
                 </section>
                 <section id="weapon">
-                    <h3>Weapons</h3>
+                    <button unselectable="on">Weapons</button>
+                    <div></div>
                 </section>
                 <section id="armor">
-                    <h3>Armor</h3>
+                    <button unselectable="on">Armor</button>
+                    <div></div>
                 </section>
             </div>
             <div id="footer_bar">
