@@ -13,7 +13,7 @@
 <body>
     <main>
         <div id="morkborg_app">
-            <picture id="back_img_layout"><img src="images/back_layout_mobile.webp"><div id="back_color"></div></picture>
+            <picture id="back_img_layout" unselectable="on"><img src="images/back_layout_mobile.webp"><div id="back_color"></div></picture>
             <section id="header"><h2>Morkborg</h2></section>
             <picture id="front_img_layout">
                 <img src="images/morkborg-front-layout-mobile.webp">
@@ -32,51 +32,64 @@
             </picture>
             <div id="silver_food">
                 <picture>
-                    <img src="images/silver-food.webp">
+                    <img src="images/silver-food.webp" unselectable="on">
                     <img src="images/silver.svg">
                     <img src="images/food.svg">
                     <p class="attribute">20</p>
                     <p class="attribute">4</p>
                 </picture>
             </div>
-            <section id="character_info_container">
-                <button>Name, Traits, Tales</button>
-                <div class="character_info">
-                    <p><span>Name</span> </p>
-                    <p><span>Traits</span> </p>
-                    <p><span>Broken Bodies</span> </p>
-                    <p><span>Habits</span> </p>
-                    <p><span>Tale</span> </p>
-                    <p><span>Class Specific</span> </p>
-                </div>
-            </section>
-            <div id="horizontal-container" class="snap-inline">
+            <div id="horizontal-container">
+                <section id="character_info_container">
+                    <button unselectable="on">Name, Traits, Tales<span>⇓</span></button>
+                    <div class="character_info">
+                        <p><span>Name</span> </p>
+                        <p><span>Traits</span> </p>
+                        <p><span>Broken Bodies</span> </p>
+                        <p><span>Habits</span> </p>
+                        <p><span>Tale</span> </p>
+                        <p><span>Class</span> </p>
+                    </div>
+                </section>
+                <section id="ability">
+                    <button unselectable="on">Abilities<span>⇓</span></button>
+                    <div class="character_info">
+                        <p><span>Class Ability</span> N/A</p>
+                    </div>
+                </section>
                 <section id="carry_capacity">
                     <div>
                         <p>
-                        <span>Carry Capacity</span>
-                        8
+                        <span>Carry Capacity</span>8
                         </p>
                     </div>
                 </section>
                 <section id="equipment">
-                    <h3>Equipment</h3>
-                    <div>
+                    <button unselectable="on">Equipment<span>⇓</span></button>
+                    <div class="character_info">
                         <p><span>#.</span> Items</p>
                     </div>
                 </section>
                 <section id="weapon">
-                    <h3>Weapons</h3>
+                    <button unselectable="on">Weapons<span>⇓</span></button>
                 </section>
                 <section id="armor">
-                    <h3>Armor</h3>
+                    <button unselectable="on">Armor<span>⇓</span></button>
                 </section>
             </div>
             <div id="footer_bar">
                 <div id="blackbar"></div>
                 <div id="class">
                     <div>
-                        <span>Class</span><span>N/A</span>
+                        <span>Class</span>
+                        <select id="class_select">
+                            <option value="0">Complete Random</option>
+                            <option value="1">Classless</option>
+                            <option value="2">Random Class</option>
+                            <option value="3">Fanged Deserter</option>
+                            <option value="4">Gutter Born Scum</option>
+                            <option value="5">Esoteric Hermit</option>
+                        </select>
                     </div>
                 </div>
                 <div id="footer_content">

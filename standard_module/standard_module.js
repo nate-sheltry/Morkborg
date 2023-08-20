@@ -157,7 +157,7 @@ function decideScroll(item){
 function getArmor(otherFactor = false){
     let scroll = isScroll;
     if(scroll || otherFactor)
-        return items[0].armor[rollDie(2)-1]
+        return [items[0].armor[rollDie(2)-1]]
     return [items[0].armor[rollDie(4)-1]]
 }
 
@@ -193,6 +193,10 @@ function fangedDeserterItem(equipment, weapons){
     }
     classItem = [`${quantity}.`, `${classItem.name}${classItem.desc}`];
     equipment.push(classItem);
+}
+function getClassAbility(object){
+    let ability = object[rollDie(object.length)-1]
+    return `<b>${ability.name}</b><br>${ability.desc}`
 }
 
 function noClassAttributes(){
@@ -230,7 +234,8 @@ function noClassAttributes(){
     let weapons = getWeapon();
     let armor = getArmor()
     let charInfo = getCharacterInfo();
-    displayEquipment(equipment, weapons, armor, charInfo);
+    let classAbility = undefined;
+    displayEquipment(equipment, weapons, armor, charInfo, classAbility);
 }
 
 function fangedDeserter(){
@@ -257,8 +262,9 @@ function fangedDeserter(){
     let armor = getArmor()
     fangedDeserterItem(equipment, weapons)
     let charInfo = getCharacterInfo();
-    charInfo.push([characterDescriptors[0].fanged_deserter.name + getDescriptor(characterDescriptors[0].fanged_deserter.values)])
-    displayEquipment(equipment, weapons, armor, charInfo);
+    charInfo.push([characterDescriptors[0].fanged_deserter.class_name + ' - <b>' + characterDescriptors[0].fanged_deserter.name + '</b><br>' + getDescriptor(characterDescriptors[0].fanged_deserter.values)])
+    let classAbility = undefined;
+    displayEquipment(equipment, weapons, armor, charInfo, classAbility);
 }
 
 function gutterBornScum(){
@@ -281,10 +287,38 @@ function gutterBornScum(){
     let equipment = getStartingEquipment();
     let weapons = getWeapon(true);
     let armor = getArmor(true)
-    /*
-    fangedDeserterItem(equipment, weapons)
     let charInfo = getCharacterInfo();
-    charInfo.push([characterDescriptors[0].fanged_deserter.name + getDescriptor(characterDescriptors[0].fanged_deserter.values)])
-    */
-    displayEquipment(equipment, weapons, armor, charInfo);
-} 
+    charInfo.push([characterDescriptors[0].gutter_born_scum.class_name + ' - <b>' + characterDescriptors[0].gutter_born_scum.name + '</b><br>' + getDescriptor(characterDescriptors[0].gutter_born_scum.values)])
+    let classAbility = getClassAbility(items[0].gutter_born_scum.starting_bonus);
+    displayEquipment(equipment, weapons, armor, charInfo, classAbility);
+}
+
+function esotericHermit(){
+    let attributes = [];
+    for(let i = 0; i < 4; i++){
+        attributes.push(rollDice('3d6'))
+    }
+    //Strength -2;
+    attributes[0] = attributes[0] - 2;
+    //Presence +2
+    attributes[2] = attributes[2] + 2;
+    /********************************/
+    mainAttributes.Omens = rollDie(2);
+    inventory.silver = rollDice('1d6')*10;
+    inventory.food = rollDie(4);
+    determineAttributes(attributes);
+    mainAttributes.HitPoints = mainAttributes.Toughness + rollDie(6);
+    if(mainAttributes.HitPoints < 1)
+        mainAttributes.HitPoints = 1;
+    inventory.carryCapacity = mainAttributes.Strength + 8;
+    displayAttributes();
+    let equipment = getStartingEquipment();
+    let weapons = getWeapon(true);
+    let armor = getArmor(true)
+    let charInfo = getCharacterInfo();
+    let scroll = [['', 'unclean'], ['', 'sacred']];
+    equipment.push(decideScroll(scroll[rollDie(2)-1]))
+    charInfo.push([characterDescriptors[0].esoteric_hermit.class_name + ' - <b>' + characterDescriptors[0].esoteric_hermit.name + '</b><br>' + getDescriptor(characterDescriptors[0].esoteric_hermit.values)])
+    let classAbility = getClassAbility(items[0].esoteric_hermit.starting_bonus);
+    displayEquipment(equipment, weapons, armor, charInfo, classAbility);
+}

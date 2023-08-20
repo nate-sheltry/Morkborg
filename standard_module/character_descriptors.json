@@ -44,7 +44,8 @@
         "“Burn or be burned” is the fate you accept.","Your flesh heals twice as fast, but your companions twice as slow. You see a many-eyed “guardian angel.”"
     ],
     "fanged_deserter":{
-        "name":"<br><b>Earliest Memories:</b><br>",
+        "class_name":"Fanged Deserter",
+        "name":"Earliest Memories:",
         "values":[
             "A burnt-black building in Sarkash. Your home?",
             "A derelict rotting ship rolling endlessly across a grey sea.",
@@ -55,7 +56,8 @@
         ]
     },
     "gutter_born_scum":{
-        "name":"<br><b>Bad Birth:</b><br>",
+        "class_name":"Gutter Born Scum",
+        "name":"Bad Birth:",
         "values":[
             "Dumped onto a moving shit-cart still in your birth caul.",
             "Mother hanged from a tree outside of Galgenbeck, you fell from the corpse.",
@@ -63,6 +65,18 @@
             "Kicked and beaten beneath a baker’s table in Schleswig.",
             "Escaped the Tvelandian orphanarium.",
             "Educated by outlaws in a hovel south of Alliáns."
+        ]
+    },
+    "esoteric_hermit":{
+        "class_name":"Esoteric Hermit",
+        "name":"Eldritch Origins:",
+        "values":[
+            "Awakening, adult, in a ritual circle underneath the northern bridge to Grift.",
+            "Wandered, memoryless, from the mouth of a cavern at the cliffs of Terion.",
+            "Single child survivor of an incident in the Valley of the Unfortunate Undead.",
+            "Dying of plague in a Bergen Chrypt hovel, you touched something from outside.",
+            "An average individual until you encountered something in a dim glade in Sarkash.",
+            "Raised on a lonely island in Lake Onda. No one else has ever heard of this island and you can’t return."
         ]
     }
 }
