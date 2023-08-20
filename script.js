@@ -27,7 +27,10 @@ const __weapon = document.querySelector('#weapon');
 const __armor = document.querySelector('#armor');
 const __class = document.querySelector('#class');
 
+const __ability = document.querySelector('#ability')
+
 const __charInfo = document.querySelector('#character_info_container').children[1];
+const __classSelect = document.querySelector('#class_select')
 
 const __footer = document.querySelector('#footer_bar')
 
@@ -98,7 +101,8 @@ function displayAttributes(){
     __carryCap.children[0].childNodes[2].textContent = inventory.carryCapacity;
 }
 
-function displayEquipment(equipment, weapons, armors, charInfo){
+function displayEquipment(equipment, weapons, armors, charInfo, classAbility){
+    let classes;
     //Starting Items
     if(__equipment.children.length > 1){
         for(let i = __equipment.children.length-1; i > 0; i--){
@@ -116,14 +120,19 @@ function displayEquipment(equipment, weapons, armors, charInfo){
         __equipment.appendChild(paragraph);
     }
     //Weapon
+    classes = '';
     if(__weapon.children.length > 1){
-        for(let i = __weapon.children.length-1; i > 1; i--){
+        classes = __weapon.children[1].classList
+        for(let i = __weapon.children.length-1; i > 0; i--){
             __weapon.children[i].remove()
         }
     }
     weapons.forEach(weapon =>{
         let div = document.createElement('div')
-        div.classList.toggle('character_info')
+        if(!classes.toString().includes('character_info')){
+            div.classList.toggle('character_info'); div.classList += classes;
+        }
+        else{div.classList = classes;}
         let name = document.createElement('p')
         let paragraph;
         name.textContent = weapon.name;
@@ -155,14 +164,19 @@ function displayEquipment(equipment, weapons, armors, charInfo){
         __weapon.appendChild(div)
     })
     //Armor
+    classes = '';
     if(__armor.children.length > 1){
+        classes = __armor.children[1].classList
         for(let i = __armor.children.length-1; i > 0; i--){
             __armor.children[i].remove()
         }
     }
     armors.forEach(armor => {
         let div = document.createElement('div')
-        div.classList.toggle('character_info')
+        if(!classes.toString().includes('character_info')){
+            div.classList.toggle('character_info'); div.classList += classes;
+        }
+        else{div.classList = classes;}
         let name = document.createElement('p')
         name.textContent = armor.name;
         div.appendChild(name);
@@ -172,6 +186,14 @@ function displayEquipment(equipment, weapons, armors, charInfo){
             damageResTitle.textContent = 'Damage Reduction';
             paragraph.textContent = `${armor.damage_reduction}`;
             paragraph.insertBefore(damageResTitle, paragraph.firstChild);
+            div.appendChild(paragraph);
+        }
+        if(armor.effect != ""){
+            let paragraph = document.createElement('p');
+            let effectTitle = document.createElement('span');
+            effectTitle.textContent = 'Effect';
+            paragraph.textContent = `${armor.effect}`;
+            paragraph.insertBefore(effectTitle, paragraph.firstChild);
             div.appendChild(paragraph);
         }
         __armor.appendChild(div)
@@ -195,6 +217,13 @@ function displayEquipment(equipment, weapons, armors, charInfo){
             object.innerHTML = DOMPurify.sanitize(string);
         }
     }
+    for(let i = __ability.children[1].children[0].childNodes.length-1; i > 0; i--){
+        __ability.children[1].children[0].childNodes[i].remove()
+    }
+    if(classAbility == undefined)
+        __ability.children[1].children[0].innerHTML += DOMPurify.sanitize('N/A');
+    else
+        __ability.children[1].children[0].innerHTML += DOMPurify.sanitize(classAbility);
 
 }
 
@@ -236,37 +265,95 @@ function determineAttributes(attributes){
 }
 
 function selectRandomClass(){
-    let ranNum = rollDie(2)-1;
-    let className;
-    switch(ranNum){
+    let classValue = parseInt(__classSelect.value);
+    let ranNum;
+    switch(classValue){
         case 0:
-            noClassAttributes()
-            className = "Classless"
+            ranNum = rollDie(3)-1;
+            switch(ranNum){
+                case 0:
+                    noClassAttributes()
+                    break;
+                case 1:
+                    fangedDeserter()
+                    break;
+                case 2:
+                    gutterBornScum()
+                    break;
+                case 3:
+                    esotericHermit()
+                    break;
+            }
             break;
         case 1:
+            noClassAttributes();
+            break;
+        case 2:
+            ranNum = rollDie(2)-1;
+            switch(ranNum){
+                case 0:
+                    fangedDeserter()
+                    break;
+                case 1:
+                    gutterBornScum()
+                    break;
+                case 2:
+                    esotericHermit()
+                    break;
+            }
+            break;
+        case 3:
             fangedDeserter()
-            className = "Fanged Deserter"
+            break;
+        case 4:
+            gutterBornScum()
+            break;
+        case 5:
+            esotericHermit()
             break;
     }
-    __class.children[0].children[1].textContent = className;
 }
+
 function startOpen(e){
-    if(!handleTouchStart(e))
-        e.target.parentElement.children[1].classList.toggle('display-flex', !e.target.parentElement.children[1].classList.contains('display-flex'))
-}
-function openDiv(e){
-    if(handleTouchEnd()){
-        for(let i = 1; i < e.target.parentElement.children.length; i++){
-            e.target.parentElement.children[i].classList.toggle('display-flex', !e.target.parentElement.children[i].classList.contains('display-flex'))
+    let element = e.target;
+    if(element.tagName.toUpperCase() !== 'BUTTON'){
+        element = element.parentElement;
+    }
+    if(!handleTouchStart(e) && element.parentElement.children.length > 1){
+        for(let i = 1; i < element.parentElement.children.length; i++){
+            element.parentElement.children[i].classList.toggle('display-flex', !element.parentElement.children[i].classList.contains('display-flex'))
+        }
+        if(element.parentElement.children[1].classList.contains('display-flex')){
+            element.children[0].textContent = '⇑';
+            element.parentElement.style.borderBottomLeftRadius = '0px';
+            element.parentElement.style.borderBottomRightRadius = '0px';
+        }
+        else if(!element.parentElement.children[1].classList.contains('display-flex')){
+            element.children[0].textContent = '⇓';
+            element.parentElement.style.borderBottomLeftRadius = '4px';
+            element.parentElement.style.borderBottomRightRadius = '4px';
         }
     }
-    if(e.target.parentElement.children[1].classList.contains('display-flex')){
-        e.target.parentElement.style.borderBottomLeftRadius = '0px';
-        e.target.parentElement.style.borderBottomRightRadius = '0px';
+}
+function openDiv(e){
+    let element = e.target;
+    if(element.tagName.toUpperCase() !== 'BUTTON'){
+        element = element.parentElement;
     }
-    else if(!e.target.parentElement.children[1].classList.contains('display-flex')){
-        e.target.parentElement.style.borderBottomLeftRadius = '4px';
-        e.target.parentElement.style.borderBottomRightRadius = '4px';
+    if(handleTouchEnd(e) && element.parentElement.children.length > 1){
+        for(let i = 1; i < element.parentElement.children.length; i++){
+            element.parentElement.children[i].classList.toggle('display-flex', !element.parentElement.children[i].classList.contains('display-flex'))
+        }
+        if(element.parentElement.children[1].classList.contains('display-flex')){
+            element.children[0].textContent = '⇑';
+            element.parentElement.style.borderBottomLeftRadius = '0px';
+            element.parentElement.style.borderBottomRightRadius = '0px';
+        }
+        else if(!element.parentElement.children[1].classList.contains('display-flex')){
+            element.children[0].textContent = '⇓';
+            element.parentElement.style.borderBottomLeftRadius = '4px';
+            element.parentElement.style.borderBottomRightRadius = '4px';
+        }
     }
 }
 
@@ -276,5 +363,7 @@ __equipment.parentElement.children[0].addEventListener('pointerdown', startOpen)
 __equipment.parentElement.children[0].addEventListener('pointerup', openDiv);
 __weapon.children[0].addEventListener('pointerdown', startOpen);
 __weapon.children[0].addEventListener('pointerup', openDiv);
-__armor.parentElement.children[0].addEventListener('pointerdown', startOpen);
-__armor.parentElement.children[0].addEventListener('pointerup', openDiv);
+__armor.children[0].addEventListener('pointerdown', startOpen);
+__armor.children[0].addEventListener('pointerup', openDiv);
+__ability.children[0].addEventListener('pointerdown', startOpen);
+__ability.children[0].addEventListener('pointerup', openDiv);

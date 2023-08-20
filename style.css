@@ -1,49 +1,53 @@
-body {
-    margin:0;
-}
-main {
-    margin:0;
-}
 #header {
-    display:block;
     position:relative;
+    display:block;
     height:100px;
     font-size:2em;
     text-align:center;
-    margin-top:min(-325%, -135vh);
+    letter-spacing:-1.2px;
     z-index:1;
     color:white;
     text-shadow: 0px 0px 5px black, 2px 2px 2px black, 2px 0px 2px black, -2px 0px 2px black;
 }
 #morkborg_app {
+    position:relative;
     margin:0;
     padding:0;
     overflow:hidden;
+    min-height:2000px;
 }
 #back_img_layout {
+    position:absolute;
+    flex-direction:column;
+    top:0;
     width: 100%;
+    height:100%;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: clip;
-    background:radial-gradient(ellipse at center, yellow, rgb(145, 110, 22));
+    margin:0;
+    z-index:-1;
     
 }
 #morkborg_app #back_img_layout img {
+    position:absolute;
+    top:0;
     width: 100%;
     min-height:1058px;
     height:fit-content;
     object-fit: cover;
-    image-rendering:optimizeQuality;
+    margin:0px;
+    background:radial-gradient(ellipse at center, yellow, rgb(145, 110, 22));
 }
-#back_color {
-    position:absolute;
-    height:1000vh;
+#back_img_layout #back_color {
+    position:relative;
     width: 100%;
+    height:100%;
     overflow: clip;
     background-color:black;
     z-index:-1;
-    margin-top: 1em;
+    margin:0px;
     
 }
 #front_img_layout {
@@ -53,7 +57,7 @@ main {
     position:relative;
     min-width: 200px;
     width:278px;
-    margin:auto;
+    margin:auto auto -100px auto;
     z-index:1;
 }
 #front_img_layout > * {
@@ -137,6 +141,10 @@ main {
 #morkborg_app #front_img_layout p:nth-of-type(5){grid-row:5;margin-top:8px;}
 #morkborg_app #front_img_layout p:nth-of-type(6){grid-row:6;margin-top:-8px;}
 
+#silver_food {
+    margin:0px 0px 3em 0px;
+}
+
 #silver_food picture{
     display:grid;
     width:260px;
@@ -197,32 +205,41 @@ main {
     grid-row:1;
 }
 
-#character_info_container, #equipment, #weapon, #armor {
+#horizontal-container section {
     position:relative;
-    height:48px;
+    height:52px;
     width:calc(80vw - 4px);
-    margin:4em 10vw 4em 10vw;
-    background-color:white;
-    border:2px solid white;
+    margin:2.5em 10vw 2em 10vw;
+    background-color:black;
+    border:2px solid black;
     border-radius:4px;
-    outline: 2px solid rgb(200, 65, 145);
+    outline: 2px solid rgb(120, 40, 85);
 }
-#character_info_container{z-index:5;}
+
+#character_info_container{z-index:6;}
+#ability{z-index:5;}
 #equipment{z-index:4;}
 #weapon{z-index:3;}
 #armor{z-index:2;}
 
-#character_info_container button, #equipment button, #weapon button, #armor button {
+#horizontal-container section button, #carry_capacity div {
     width:100%;
-    height:2em;
+    height:100%;
     font-size:1.5em;
     font-weight:bold;
     border-width: 4px;
     border-color:rgb(200, 65, 145);
     border-radius:5px;
-    background-color:black;
+    background-color:white;
     color:rgb(255, 85, 200);
-    text-shadow:.5px 0px .5px rgb(255, 65, 180), 0px 1px 2px rgb(255, 65, 180);
+    text-shadow:.75px 0px .5px black, 0px 1px 1.5px black;
+}
+#horizontal-container section button span{
+    display:inline;
+    width:2em;
+    height: .5rem;
+    margin:auto auto auto 12.5px;
+    transform:scale(1.25,.75)
 }
 
 .character_info {
@@ -230,23 +247,30 @@ main {
     opacity:1;
     background-color:rgba(0,0,0,.95);
     width:100%;
-    margin:4px 0px 0px -1.75px;
+    margin:4px 0px 0px -2px;
     border:2px solid white;
-    outline: 2px solid rgb(200, 65, 145);
+    outline: 2px solid rgb(120, 40, 85);
     font-size:1.25em;
     flex-direction:column;
 }
 .character_info p {
     height:100%;
+    width:calc(100% - 8px);
     opacity:1;
     border-bottom:2px solid white;
-    line-height:1.25em;
+    line-height:1.4;
+    letter-spacing:.1px;
     color:white;
-    margin:0px;
-    padding: 2px 5px 0px 5px;
+    margin:0px 0px -2px 0px;
+    padding: 1px 5px 1px 5px;
     text-indent: 5px;
-
 }
+.character_info p:nth-of-type(1){
+    line-height:1.75em;
+    font-size:1.1em;
+    font-weight:bold;
+}
+#ability div p:nth-of-type(1){font-size:1em;}
 .character_info p span {
     float:left;
     min-width:54px;
@@ -254,97 +278,44 @@ main {
     text-align:center;
     border-bottom:2px solid white;
     border-right:2px solid white;
-    margin: -2px 0px -2px -5px;
+    margin: -1px 0px -3px -5px;
     border-bottom-right-radius: 5px;
     color:rgb(255, 105, 220);
     text-shadow: 1px 0px .5px rgb(255, 65, 180), -.5px 0px 0px rgb(255, 65, 180);
 }
 
-.snap-inline {
-    scroll-snap-type:x mandatory;
-}
-.snap-inline > * {
-    scroll-snap-align: start;
-    padding:0 10% 0 10%;
-}
-
-#horizontal-container{
-    display:grid;
-    overflow:visible;
-    grid-auto-flow:row;
-    grid-auto-columns:100vw;
-    margin-top:3em;
-}
-
-#horizontal-container section {
-    position:relative;
-    padding:0px;
-}
-
-#horizontal-container section div {
-    flex-direction:column;
-    font-size:1.25em;
-}
-
-#equipment div{
+#equipment div, #ability div, #carry_capacity div{
     background-color:white;
-    color:black;
-    border:2px solid black;
+    border-color:black;
 }
-#carry_capacity div {
-    background-color:white;
-    color:black;
-    border:2px solid black;
-    outline: 2px solid grey;
+#equipment div p, #ability div p{
+    color: black;
+    border-bottom-color: black;
 }
-#equipment div p, #carry_capacity div p {
-    line-height:1.25em;
-    height:auto;
-    align-items:center;
-    text-align:left;
-    padding-left:.5em;
-    border-bottom: 2px solid black;
-    color:black;
-    margin:0px 0px -2px;
-}
-#equipment div p span, #carry_capacity div p span, #weapon div p span, #armor div p span {
-    float:left;
-    margin-left:-.5em;
-    margin-bottom:-2px;
-    margin-right:.2em;
-    border-bottom-right-radius:5px;
-    text-align:center;
-    border-bottom: 2px solid black;
-    border-right: 2px solid black;
-}
-#equipment div p span{
-    width:32px;
-}
-#equipment div p:nth-of-type(1) span, #carry_capacity div p span{border-bottom-right-radius:0px;}
-#horizontal-container section div p:nth-of-type(1) {
-    font-weight:bold;
-    line-height:2em;
+#equipment div p span, #ability div p span{border-color:black;}
+#ability div p {font-weight:100;}
+#ability div p b {font-weight:bold;}
+#weapon div p:nth-of-type(1), #armor div p:nth-of-type(1) {
+    line-height:1.75em;
     font-size:1.1em;
-    border-bottom:2px solid black;
-}
-#horizontal-container #weapon div p:nth-of-type(1), #horizontal-container #armor div p:nth-of-type(1){
     text-align:center;
-    border-bottom-color:white;
 }
-#weapon div p span {width:140px;}
-#weapon div p span, #armor div p span {
-    border-bottom: 2px solid white;
-    border-right: 2px solid white;
+#horizontal-container #carry_capacity {border-radius:0px;border-color:white;}
+#carry_capacity div {
+    display:flex;
+    height:calc(100% - 8px);
+    width:calc(100% - 8px);
+    font-weight: bold;
+    color:white;
+    border: 4px solid rgb(200, 65, 145);
+    border-radius:0px;
+    background-color:black;
 }
-#armor div p span, #carry_capacity div p span{width:170px;}
-
-#carry_capacity {
-    margin:0px 10% 0px 10%;
+#carry_capacity div p {
+    margin:auto;
+    text-align:center;
 }
-#carry_capacity div p span{
-    width:80%;
-    margin-right:.75em;
-}
+#carry_capacity div p span {color:rgb(255, 85, 200);margin-right:.5em;}
 
 
 #footer_bar{
@@ -356,7 +327,7 @@ main {
     z-index:10;
 }
 #class {
-    height:26px;
+    height:30px;
     font-size:1.25em;
     font-weight:bold;
     text-shadow:.75px 0px 0px black;
@@ -366,19 +337,38 @@ main {
     text-align:center;
 }
 #class div {
+    background-color:yellow;
+    display:flex;
+    height:26px;
+    overflow:hidden;
+    flex-direction:row;
+    justify-content:space-between;
     border: 4px solid black;
 }
-#class span:nth-of-type(1){
+#class div span{
     display:inline-block;
     width:40%;
+    border: 2px solid black;
 }
-#class span:nth-of-type(2){
+#class div #class_select{
     display:inline-block;
     width:60%;
+    appearance: none;
+    text-align:center;
+    background-color:yellow;
+    border:2px solid black;
+    font-weight:bold;
+    margin:0px;
+    justify-self:center;
+    vertical-align:middle;
+}
+#class_select option{
+    font-weight:bold;
+    appearance:none;
 }
 #footer_content {
-    display:flex;
-    height:66px;
+    display:grid;
+    height:62px;
     border: 4px solid rgb(80, 80, 80);
     width:calc(100vw - 8px);
     margin:0;
@@ -389,13 +379,10 @@ main {
     width:100%;
     background-color: black;
 }
-#footer_content {
-    display:grid;
-}
 #footer_content img{
     grid-column:1;
     grid-row:1;
-    margin:-2px auto -2px auto;
+    margin:-5px auto auto auto;
     transition: transform .02s;
 }
 #footer_content button {
@@ -404,9 +391,10 @@ main {
     grid-row:1;
     height: fit-content;
     width: 8em;
+    height:1.75em;
     font-size:2em;
     font-weight:900;
-    margin:auto auto 10px auto;
+    margin:2px auto auto auto;
     background-color: transparent;
     border-color:transparent;
     color:white;
@@ -431,20 +419,16 @@ main {
 
 /*Pens, styluses, mouses*/
 @media (pointer: fine) {
-    #character_info_container button:hover {
-        color: black;
+    #character_info_container button:hover, #equipment button:hover,
+    #weapon button:hover, #armor button:hover {
+        color: white;
         background-color:rgb(255, 85, 200);
-        text-shadow:.5px 0px .5px black, 0px 1px 2px black;
-        border-color: black;
+        text-shadow:1px 0px .5px white, 0px 1px 2px white;
+        border-color: grey;
     }
 }
 
 /*TV's Mobile devices, etc*/
 @media (pointer: coarse) {
-    #character_info_container:active {
-        background-color:white;
-        border:2px solid white;
-        border-radius:4px;
-        outline: 2px solid white;
-    }
+    
 }

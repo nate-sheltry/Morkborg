@@ -39,46 +39,57 @@
                     <p class="attribute">4</p>
                 </picture>
             </div>
-            <section id="character_info_container">
-                <button unselectable="on">Name, Traits, Tales</button>
-                <div class="character_info">
-                    <p><span>Name</span> </p>
-                    <p><span>Traits</span> </p>
-                    <p><span>Broken Bodies</span> </p>
-                    <p><span>Habits</span> </p>
-                    <p><span>Tale</span> </p>
-                    <p><span>Class Specific</span> </p>
-                </div>
-            </section>
             <div id="horizontal-container">
+                <section id="character_info_container">
+                    <button unselectable="on">Name, Traits, Tales<span>⇓</span></button>
+                    <div class="character_info">
+                        <p><span>Name</span> </p>
+                        <p><span>Traits</span> </p>
+                        <p><span>Broken Bodies</span> </p>
+                        <p><span>Habits</span> </p>
+                        <p><span>Tale</span> </p>
+                        <p><span>Class</span> </p>
+                    </div>
+                </section>
+                <section id="ability">
+                    <button unselectable="on">Abilities<span>⇓</span></button>
+                    <div class="character_info">
+                        <p><span>Class Ability</span> N/A</p>
+                    </div>
+                </section>
                 <section id="carry_capacity">
                     <div>
                         <p>
-                        <span>Carry Capacity</span>
-                        8
+                        <span>Carry Capacity</span>8
                         </p>
                     </div>
                 </section>
                 <section id="equipment">
-                    <button unselectable="on">Equipment</button>
+                    <button unselectable="on">Equipment<span>⇓</span></button>
                     <div class="character_info">
                         <p><span>#.</span> Items</p>
                     </div>
                 </section>
                 <section id="weapon">
-                    <button unselectable="on">Weapons</button>
-                    <div></div>
+                    <button unselectable="on">Weapons<span>⇓</span></button>
                 </section>
                 <section id="armor">
-                    <button unselectable="on">Armor</button>
-                    <div></div>
+                    <button unselectable="on">Armor<span>⇓</span></button>
                 </section>
             </div>
             <div id="footer_bar">
                 <div id="blackbar"></div>
                 <div id="class">
                     <div>
-                        <span>Class</span><span>N/A</span>
+                        <span>Class</span>
+                        <select id="class_select">
+                            <option value="0">Complete Random</option>
+                            <option value="1">Classless</option>
+                            <option value="2">Random Class</option>
+                            <option value="3">Fanged Deserter</option>
+                            <option value="4">Gutter Born Scum</option>
+                            <option value="5">Esoteric Hermit</option>
+                        </select>
                     </div>
                 </div>
                 <div id="footer_content">

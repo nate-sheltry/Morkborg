@@ -53,8 +53,14 @@
             {"name":"Dodging Death", "desc":"You are so unpleasant, irrelevant, disgusting and vile even Death would rather avoid you if it can. On death, if there is even the slightest possibility that you survived, there is a 50% chance that you did. If successful, after 10 rounds you pop back up with d4 HP and an unlikely explanation of your escape."}
         ]
     },
-    "gutter_born_scum":{
-        "":[
+    "esoteric_hermit":{
+        "starting_bonus":[
+            {"name":"Master of Fate","desc":"What use are maps when the substance of causality itself is open to you? You know the right way with a DR8 Presence test."},
+            {"name":"A Book of Boiling Blood","desc":"You may open and read from this book once a day. Your enemy must make a DR12 test to prevent this. If they fail D2 Berserker-slayers appear from the depths of a forgotten dimension of blood. Roll a D6. On a 1–4 these creatures fight alongside you. On a 5–6 they turn on you, attempting to kill you and destroy the book. After the battle they return to their imprisonment."},
+            {"name":"Speaker of Truths","desc":"Twice per day use your wisdom, knowledge, advice and inner calm to bring clarity to a creature of your choice. The DR of the next test they undertake is lowered by 4."},
+            {"name":"Initiate of the Invisible College","desc":"Once per day you may summon D2 scrolls, whose power can be used only once. Roll a d4, on a 1–2 the scrolls are sacred, on a 3–4, unclean. If the scrolls are not used before sunrise they turn to ash."},
+            {"name":"Bard of Undying","desc":"You learnt your melodies in the Otherworld. The music of your Harp gives +D4 on reaction rolls."},
+            {"name":"Hawk as Weapon","desc":"Your crafty almost-intelligent hawk is loyal only to you. Even without shared language, you understand its cries as it keeps watch, scouts and swoops to attack foes. Attacks/defence DR10 (claws/bite D4), HP 8."}
 
         ]
     }
