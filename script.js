@@ -7,8 +7,8 @@ function loadStyleSheet(url){
     link.href = url
     document.head.appendChild(link)
 }
-let isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
-let isFirefox = typeof InstallTrigger !== 'undefined';
+let isChrome = navigator.userAgent.toLowerCase().includes('chrome');
+let isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
 let isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
 if(isFirefox)

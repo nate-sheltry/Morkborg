@@ -161,14 +161,14 @@ function getArmor(otherFactor = false){
     return [items[0].armor[rollDie(4)-1]]
 }
 
-function getWeapon(otherFactor = false){
+function getWeapon(otherFactor = false, num = 10){
     let weapon;
     let scroll = isScroll;
     if(scroll || otherFactor){
         weapon = items[0].weapons[rollDie(6)-1]
     }
     else{
-        weapon = items[0].weapons[rollDie(10)-1]
+        weapon = items[0].weapons[rollDie(num)-1]
         if(weapon.ammo != undefined)
             weapon.amount = parseInt(parseInt(mainAttributes[weapon.modifier]) + parseInt(weapon.amount))
     }
@@ -303,11 +303,11 @@ function esotericHermit(){
     //Presence +2
     attributes[2] = attributes[2] + 2;
     /********************************/
-    mainAttributes.Omens = rollDie(2);
+    mainAttributes.Omens = rollDie(4);
     inventory.silver = rollDice('1d6')*10;
     inventory.food = rollDie(4);
     determineAttributes(attributes);
-    mainAttributes.HitPoints = mainAttributes.Toughness + rollDie(6);
+    mainAttributes.HitPoints = mainAttributes.Toughness + rollDie(4);
     if(mainAttributes.HitPoints < 1)
         mainAttributes.HitPoints = 1;
     inventory.carryCapacity = mainAttributes.Strength + 8;
@@ -321,4 +321,25 @@ function esotericHermit(){
     charInfo.push([characterDescriptors[0].esoteric_hermit.class_name + ' - <b>' + characterDescriptors[0].esoteric_hermit.name + '</b><br>' + getDescriptor(characterDescriptors[0].esoteric_hermit.values)])
     let classAbility = getClassAbility(items[0].esoteric_hermit.starting_bonus);
     displayEquipment(equipment, weapons, armor, charInfo, classAbility);
+}
+
+function wretchedRoyalty(){
+    let attributes = [];
+    for(let i = 0; i < 4; i++){
+        attributes.push(rollDice('3d6'))
+    }
+    determineAttributes(attributes);
+    mainAttributes.Omens = rollDie(2);
+    inventory.silver = rollDice('4d6')*10;
+    inventory.food = rollDie(4);
+    displayAttributes();
+    mainAttributes.HitPoints = mainAttributes.Toughness + rollDie(6);
+    if(mainAttributes.HitPoints < 1)
+        mainAttributes.HitPoints = 1;
+    let equipment = getStartingEquipment();
+    let weapons = getWeapon(false, 8);
+    let armor = getArmor()
+    if(armor[0].name.toLowerCase() == 'heavy')
+        armor = getArmor();
+
 }
