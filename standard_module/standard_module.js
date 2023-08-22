@@ -341,5 +341,5 @@ function wretchedRoyalty(){
     let armor = getArmor()
     if(armor[0].name.toLowerCase() == 'heavy')
         armor = getArmor();
-
+    
 }
