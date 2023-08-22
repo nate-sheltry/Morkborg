@@ -267,7 +267,7 @@ function selectRandomClass(){
             noClassAttributes();
             break;
         case 2:
-            ranNum = rollDie(2)-1;
+            ranNum = rollDie(3)-1;
             switch(ranNum){
                 case 0:
                     fangedDeserter()
